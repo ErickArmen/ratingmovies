@@ -2,6 +2,8 @@ package com.martinez.erick.ratingmovies
 
 import android.app.Activity
 import android.app.Application
+import com.martinez.erick.ratingmovies.core.di.AppComponent
+import com.martinez.erick.ratingmovies.core.di.AppModule
 import com.martinez.erick.ratingmovies.core.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
@@ -14,9 +16,21 @@ import javax.inject.Inject
 */
 
 
-class RatingMoviesApp: DaggerApplication() {
+class RatingMoviesApp: Application()/*: DaggerApplication()*/ {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-            DaggerAppComponent.builder().application(this).build()
+    private lateinit var appComponent: AppComponent
+
+    override fun onCreate() {
+        super.onCreate()
+        appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+    }
+
+
+    /*override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        appComponent = DaggerAppComponent.builder().application(this).build()
+        return appComponent
+    }*/
+
+    fun getAppComponent() = appComponent
 
 }

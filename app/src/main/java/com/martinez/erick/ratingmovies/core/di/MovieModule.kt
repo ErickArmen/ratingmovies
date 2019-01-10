@@ -1,49 +1,56 @@
 package com.martinez.erick.ratingmovies.core.di
 
-
-import android.app.Application
 import com.martinez.erick.ratingmovies.core.di.viewmodel.ViewModelModule
 import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
 import com.martinez.erick.ratingmovies.core.sqlite.RoomDB
-import com.martinez.erick.ratingmovies.core.sqlite.RoomProvider
 import com.martinez.erick.ratingmovies.features.randomrating.data.LocalMovies
 import com.martinez.erick.ratingmovies.features.randomrating.data.MovieRepository
 import com.martinez.erick.ratingmovies.features.randomrating.domain.*
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Observable
 import javax.inject.Named
-import javax.inject.Singleton
 
 /*
- Created by Erick Martínez Armendáriz on 1/8/2019
+ Created by Erick Martínez Armendáriz on 1/9/2019
 */
 
+const val movieReaderName = "MovieReader"
+const val movieUpdaterName = "MovieUpdater"
+const val movieRaterName = "MovieRater"
+const val movieRepositoryName = "MovieRepository"
 
-@Module
-class AppModule(private val application: Application) {
+@Module(includes = [ViewModelModule::class])
+class MovieModule {
 
-    @Singleton
+
     @Provides
-    fun injectRoom(): RoomDB = RoomProvider(application).createDB()
+    @Named(movieRepositoryName)
+    fun injectMovieRepository(roomDB: RoomDB): MovieRepository {
+        return LocalMovies(roomDB)
+    }
 
-   /*@Provides
+
+    @Provides
     @Named(movieReaderName)
-    fun injectMovieReader(localMovies: LocalMovies): Reader<Observable<MutableList<MovieEntity>>>{
+    fun injectMovieReader(localMovies: LocalMovies): Reader<Observable<MutableList<MovieEntity>>> {
         return MovieReader(localMovies)
     }
 
+    @MovieScope
     @Provides
     @Named(movieUpdaterName)
-    fun injectMovieUpdater(localMovies: LocalMovies): Updater<MovieEntity>{
+    fun injectMovieUpdater(localMovies: LocalMovies): Updater<MovieEntity> {
         return MovieUpdater(localMovies)
     }
 
+    @MovieScope
     @Provides
     @Named(movieRaterName)
     fun injectMovieRater(): Rater<MovieEntity, Float> {
         return MovieRater()
-    }*/
+    }
+
+
 
 }

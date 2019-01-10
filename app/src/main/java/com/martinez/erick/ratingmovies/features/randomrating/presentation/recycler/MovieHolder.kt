@@ -31,7 +31,6 @@ class MovieHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         rating.text = avgRating.toString()
         //image.setImageDrawable(getImage(movie.imageUrl))
         rateBar.setOnRatingBarChangeListener { _, rating, _ ->
-            //todo send rating to do the logic of increment votes and totalrating, on the domain
             listener(movie, rating)
         }
     }

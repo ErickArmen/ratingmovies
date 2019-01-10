@@ -11,6 +11,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 interface ActivitiesModule {
 
-    @ContributesAndroidInjector(modules = [FragmentsModule::class])
+    @ContributesAndroidInjector
     fun contributeRandomActivity(): RandomRatingActivity
 }

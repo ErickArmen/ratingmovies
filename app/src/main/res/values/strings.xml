@@ -2,4 +2,5 @@
     <string name="app_name">RatingMovies</string>
     <string name="random_rating">Random Rating</string>
     <string name="avengers">Avengers</string>
+    <string name="thank_you_for_rate">Thank you for rate!</string>
 </resources>

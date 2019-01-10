@@ -10,7 +10,7 @@ import javax.inject.Singleton
  Created by Erick Martínez Armendáriz on 1/8/2019
 */
 
-@Singleton
+
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory
 @Inject constructor(private val creators: Map<Class<out ViewModel>,
