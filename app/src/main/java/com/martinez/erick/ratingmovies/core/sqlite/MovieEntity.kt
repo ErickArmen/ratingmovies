@@ -9,4 +9,4 @@ import androidx.room.PrimaryKey
 
 
 @Entity
-class MovieEntity(@PrimaryKey val uid: Int, var name: String, var totalRating: Float, var votes: Long, var imageUrl: String)
+class MovieEntity(@PrimaryKey val uid: Int, var name: String, var totalRating: Float, var votes: Long, var image: Int)

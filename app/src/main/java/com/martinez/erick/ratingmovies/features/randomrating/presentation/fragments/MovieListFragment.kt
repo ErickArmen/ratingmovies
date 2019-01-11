@@ -42,7 +42,6 @@ import javax.inject.Inject
  Created by Erick Martínez Armendáriz on 1/8/2019
 */
 
-//TODO pasar el manejo de errores a un objeto
 class MovieListFragment: Fragment(), View.OnClickListener {
 
     @Inject lateinit var vmFactory: ViewModelProvider.Factory

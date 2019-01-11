@@ -15,7 +15,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/avengers"/>
 
     <TextView
             android:id="@+id/tv_movie_name"

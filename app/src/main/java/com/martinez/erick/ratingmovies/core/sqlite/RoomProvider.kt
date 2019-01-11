@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.martinez.erick.ratingmovies.R
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
 
@@ -14,8 +15,9 @@ import io.reactivex.schedulers.Schedulers
 
 private const val dbName = "movies"
 
-/*
-var roomDb purpose is to have reference for the insertion of the preData
+/**
+ * Class to build RoomDatabase instance
+ * @roomDb purpose is to have reference for the insertion of the preData
  */
 class RoomProvider (private val application: Context) {
 
@@ -37,16 +39,18 @@ class RoomProvider (private val application: Context) {
                 .build().also { roomDb = it }
     }
 
+    //Ideally we put string url in place of a drawable to make more flexible if we need to add different images.
+    //Also the apk become lighter.
     val preData = listOf(
-            MovieEntity(0, "0", 0f, 0, "URL0"),
-            MovieEntity(1, "1", 0f, 0, "URL1"),
-            MovieEntity(2, "2", 0f, 0, "URL2"),
-            MovieEntity(3, "3", 0f, 0, "URL3"),
-            MovieEntity(4, "4", 0f, 0, "URL4"),
-            MovieEntity(5, "5", 0f, 0, "URL5"),
-            MovieEntity(6, "6", 0f, 0, "URL6"),
-            MovieEntity(7, "7", 0f, 0, "URL7"),
-            MovieEntity(8, "8", 0f, 0, "URL8"),
-            MovieEntity(9, "9", 0f, 0, "URL9"))
+            MovieEntity(0, "Avengers", 0f, 0, R.drawable.avengers),
+            MovieEntity(1, "Avatar", 0f, 0, R.drawable.avatar),
+            MovieEntity(2, "Batman", 0f, 0, R.drawable.batman),
+            MovieEntity(3, "Harry Potter", 0f, 0, R.drawable.harry_potter),
+            MovieEntity(4, "Hawkeye", 0f, 0, R.drawable.hawkeye),
+            MovieEntity(5, "Hellcat", 0f, 0, R.drawable.hellcat),
+            MovieEntity(6, "Ironman", 0f, 0, R.drawable.ironman),
+            MovieEntity(7, "Predator", 0f, 0, R.drawable.predator),
+            MovieEntity(8, "Spiderman", 0f, 0, R.drawable.spiderman),
+            MovieEntity(9, "Venom", 0f, 0, R.drawable.venom))
 
 }
