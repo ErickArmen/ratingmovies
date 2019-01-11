@@ -50,7 +50,4 @@ class MovieModule {
     fun injectMovieRater(): Rater<MovieEntity, Float> {
         return MovieRater()
     }
-
-
-
 }

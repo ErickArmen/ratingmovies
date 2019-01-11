@@ -6,6 +6,9 @@ import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
  Created by Erick Martínez Armendáriz on 1/9/2019
 */
 
+/**
+ * Comparator for movies
+ */
 class MovieComparator: Comparator<MovieEntity> {
 
     override fun compare(o1: MovieEntity?, o2: MovieEntity?): Int {

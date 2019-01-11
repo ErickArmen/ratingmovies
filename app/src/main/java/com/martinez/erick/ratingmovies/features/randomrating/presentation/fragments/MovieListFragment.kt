@@ -1,6 +1,7 @@
 package com.martinez.erick.ratingmovies.features.randomrating.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,25 +18,40 @@ import com.martinez.erick.ratingmovies.core.extensions.toast
 import com.martinez.erick.ratingmovies.core.extensions.viewModel
 import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
 import com.martinez.erick.ratingmovies.features.randomrating.domain.MovieComparator
+import com.martinez.erick.ratingmovies.features.randomrating.domain.RandomRate
+import com.martinez.erick.ratingmovies.features.randomrating.domain.RandomRatingPosition
 import com.martinez.erick.ratingmovies.features.randomrating.presentation.recycler.MovieAdapter
 import com.martinez.erick.ratingmovies.features.randomrating.presentation.viewmodels.RandomRatingViewModel
 import dagger.android.support.DaggerFragment
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.Observer
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Cancellable
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /*
  Created by Erick Martínez Armendáriz on 1/8/2019
 */
 
-class MovieListFragment: Fragment() {
+//TODO pasar el manejo de errores a un objeto
+class MovieListFragment: Fragment(), View.OnClickListener {
 
     @Inject lateinit var vmFactory: ViewModelProvider.Factory
     private val compositeDisposable = CompositeDisposable()
     private lateinit var randomRatingViewModel: RandomRatingViewModel
     private var movieList = mutableListOf<MovieEntity>()
     private lateinit var mainAdapter: MovieAdapter
+    private val randomObservable: PublishSubject<RandomRatingPosition> = PublishSubject.create()
+    private var randomFlag = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_movie_list, container, false)
@@ -43,7 +59,7 @@ class MovieListFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val movieComponent = (activity?.application as RatingMoviesApp)
+        (activity?.application as RatingMoviesApp)
             .getAppComponent()
             .randomRatingActivityComponent(MovieModule())
             .injectMovieFragment(this)
@@ -52,6 +68,11 @@ class MovieListFragment: Fragment() {
         randomRatingViewModel = viewModel(vmFactory){
             observe(compositeDisposable, getAllMovies(), onNext = ::setRecyclerList, onError = ::showError)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 
     private fun initViews(){
@@ -63,6 +84,7 @@ class MovieListFragment: Fragment() {
         mainAdapter = MovieAdapter(movieList)
         mainAdapter.listener = {movie, rating -> updateRating(movie, rating) }
         rv_movies.adapter = mainAdapter
+        btn_random.setOnClickListener(this)
     }
 
     private fun setRecyclerList(list: MutableList<MovieEntity>){
@@ -81,11 +103,38 @@ class MovieListFragment: Fragment() {
     }
 
     private fun successRating(){
+
+        if (randomFlag){
+            val randomRatePos = RandomRate.generateRatingPosition(movieList.size)
+            val time = RandomRate.generateTime()
+            compositeDisposable.add(Single.just(randomRatePos).delay(time, TimeUnit.SECONDS).subscribe { t ->
+                randomObservable.onNext(t)
+            })
+        }
+
         activity?.toast(getString(R.string.thank_you_for_rate), Toast.LENGTH_SHORT)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.clear()
+    private fun rateRandom() {
+
+        randomFlag = !randomFlag
+        val messageOnOff = if (randomFlag) getString(R.string.on) else getString(R.string.off)
+        activity?.toast(getString(R.string.random_on_off,messageOnOff), Toast.LENGTH_SHORT)
+
+            compositeDisposable.add(randomObservable.subscribe {
+                updateRating(movieList[it.pos], it.rating)
+            })
+
+        val randomRatePos = RandomRate.generateRatingPosition(movieList.size)
+        updateRating(movieList[randomRatePos.pos], randomRatePos.rating)
     }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.btn_random -> {
+                rateRandom()
+            }
+        }
+    }
+
 }

@@ -10,6 +10,9 @@ import javax.inject.Inject
  Created by Erick Martínez Armendáriz on 1/9/2019
 */
 
+/**
+ * Use case to update movies, you can implement all your logic related to update MovieEntity.
+ */
 class MovieUpdater @Inject constructor(
     private val movieRepository: MovieRepository): Updater<MovieEntity> {
 

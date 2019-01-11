@@ -13,6 +13,9 @@ import javax.inject.Named
  Created by Erick Martínez Armendáriz on 1/9/2019
 */
 
+/**
+ * Use case to read movies, you can implement all your logic related to read MovieEntity.
+ */
 class MovieReader @Inject constructor(
     @Named(movieRepositoryName)private val repository: MovieRepository): Reader<Observable<MutableList<MovieEntity>>>{
 

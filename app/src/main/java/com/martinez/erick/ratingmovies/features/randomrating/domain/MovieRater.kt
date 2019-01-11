@@ -7,6 +7,9 @@ import javax.inject.Inject
  Created by Erick Martínez Armendáriz on 1/9/2019
 */
 
+/**
+ * Use case to rate movies, you can implement all your logic related to rate MovieEntity.
+ */
 class MovieRater @Inject constructor(): Rater<MovieEntity, Float> {
 
     override fun rate(item: MovieEntity, rating: Float): MovieEntity {
