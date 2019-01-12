@@ -15,7 +15,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class MovieRaterTest {
 
-    val movieRater = MovieRater()
+    private val movieRater = MovieRater()
 
     @Before
     fun setUp(){
@@ -24,7 +24,7 @@ class MovieRaterTest {
 
     @Test
     fun rateTest(){
-        val movie = MovieEntity(0, "0", 5f, 1, "url1")
+        val movie = MovieEntity(0, "0", 5f, 1, 0)
         val rating = 4f
         val movieRated = movieRater.rate(movie, rating)
         Assert.assertEquals(4.5f, movieRated.totalRating/movieRated.votes)
@@ -32,7 +32,7 @@ class MovieRaterTest {
 
     @Test
     fun secondRateTest(){
-        val movie = MovieEntity(0, "0", 4421321412f, 897263123, "url1")
+        val movie = MovieEntity(0, "0", 4421321412f, 897263123, 0)
         val rating = 4f
         val movieRated = movieRater.rate(movie, rating)
         Assert.assertEquals(4.92f, movieRated.totalRating/movieRated.votes, 0.05f)

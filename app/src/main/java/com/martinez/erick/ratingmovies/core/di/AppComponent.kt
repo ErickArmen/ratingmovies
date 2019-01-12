@@ -1,16 +1,8 @@
 package com.martinez.erick.ratingmovies.core.di
 
-import android.app.Application
-import com.martinez.erick.ratingmovies.RatingMoviesApp
 import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
-import com.martinez.erick.ratingmovies.core.sqlite.RoomDB
-import com.martinez.erick.ratingmovies.features.randomrating.data.LocalMovies
-import com.martinez.erick.ratingmovies.features.randomrating.domain.Reader
-import dagger.BindsInstance
+import com.martinez.erick.ratingmovies.core.types.Reader
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
 import io.reactivex.Observable
 import javax.inject.Singleton
 

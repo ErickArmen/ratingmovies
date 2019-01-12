@@ -1,6 +1,7 @@
 package com.martinez.erick.ratingmovies.features.randomrating.domain
 
 import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
+import com.martinez.erick.ratingmovies.core.types.Rater
 import javax.inject.Inject
 
 /*

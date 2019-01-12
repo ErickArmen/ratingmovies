@@ -15,7 +15,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class MovieComparatorTest {
 
-    val movieComparator = MovieComparator()
+    private val movieComparator = MovieComparator()
 
     @Before
     fun setUp(){
@@ -24,36 +24,36 @@ class MovieComparatorTest {
 
     @Test
     fun compareZeros(){
-        val movie1 = MovieEntity(0, "0", 0f, 0, "url1")
-        val movie2 = MovieEntity(1, "0", 0f, 0, "url2")
+        val movie1 = MovieEntity(0, "0", 0f, 0, 0)
+        val movie2 = MovieEntity(1, "0", 0f, 0, 1)
         Assert.assertEquals(0, movieComparator.compare(movie1, movie2))
     }
 
     @Test
     fun compareZeroWithOtherValue(){
-        val movie1 = MovieEntity(0, "0", 5f, 1, "url1")
-        val movie2 = MovieEntity(1, "0", 0f, 0, "url2")
+        val movie1 = MovieEntity(0, "0", 5f, 1, 0)
+        val movie2 = MovieEntity(1, "0", 0f, 0, 1)
         Assert.assertEquals(-1, movieComparator.compare(movie1, movie2))
     }
 
     @Test
     fun compareMovie1isGrater(){
-        val movie1 = MovieEntity(0, "0", 5f, 1, "url1")
-        val movie2 = MovieEntity(1, "0", 4f, 1, "url2")
+        val movie1 = MovieEntity(0, "0", 5f, 1, 0)
+        val movie2 = MovieEntity(1, "0", 4f, 1, 1)
         Assert.assertEquals(-1, movieComparator.compare(movie1, movie2))
     }
 
     @Test
     fun compareMovie2isGreater(){
-        val movie1 = MovieEntity(0, "0", 4f, 1, "url1")
-        val movie2 = MovieEntity(1, "0", 5f, 1, "url2")
+        val movie1 = MovieEntity(0, "0", 4f, 1, 0)
+        val movie2 = MovieEntity(1, "0", 5f, 1, 1)
         Assert.assertEquals(1, movieComparator.compare(movie1, movie2))
     }
 
     @Test
     fun compareEqualsNotZero(){
-        val movie1 = MovieEntity(0, "0", 5f, 1, "url1")
-        val movie2 = MovieEntity(1, "0", 5f, 1, "url2")
+        val movie1 = MovieEntity(0, "0", 5f, 1, 0)
+        val movie2 = MovieEntity(1, "0", 5f, 1, 1)
         Assert.assertEquals(0, movieComparator.compare(movie1, movie2))
     }
 

@@ -8,6 +8,10 @@ import io.reactivex.Observable
  Created by Erick Martínez Armendáriz on 1/9/2019
 */
 
+/**
+ * Repository for CRUD operations on @MovieEntity.
+ */
+
 interface MovieRepository {
     fun getData(): Observable<MutableList<MovieEntity>> = Observable.empty()
     fun setData(data: List<MovieEntity>): Completable = Completable.complete()

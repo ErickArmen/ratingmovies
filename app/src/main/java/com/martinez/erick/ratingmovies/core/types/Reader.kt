@@ -1,4 +1,4 @@
-package com.martinez.erick.ratingmovies.features.randomrating.domain
+package com.martinez.erick.ratingmovies.core.types
 
 /*
  Created by Erick Martínez Armendáriz on 1/9/2019

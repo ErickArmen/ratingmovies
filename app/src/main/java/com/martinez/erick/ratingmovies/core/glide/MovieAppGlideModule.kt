@@ -8,6 +8,4 @@ import com.bumptech.glide.module.AppGlideModule
 */
 
 @GlideModule
-class MovieAppGlideModule: AppGlideModule() {
-
-}
+class MovieAppGlideModule: AppGlideModule()

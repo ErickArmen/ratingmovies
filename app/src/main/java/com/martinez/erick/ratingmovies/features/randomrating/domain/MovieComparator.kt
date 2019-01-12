@@ -20,12 +20,12 @@ class MovieComparator: Comparator<MovieEntity> {
                 return -1
             }
 
-            if ((o1.votes == 0L && o2.votes == 0L) || (o1.totalRating/o1.votes == o2.totalRating/o2.votes)){
-                return 0
+            return if ((o1.votes == 0L && o2.votes == 0L) || (o1.totalRating/o1.votes == o2.totalRating/o2.votes)){
+                0
             }else{
                 when(o1.totalRating/o1.votes > o2.totalRating/o2.votes){
-                    true -> return -1
-                    false -> return 1
+                    true -> -1
+                    false -> 1
                 }
             }
         }else{

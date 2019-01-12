@@ -5,6 +5,9 @@ import com.martinez.erick.ratingmovies.core.di.movieRaterName
 import com.martinez.erick.ratingmovies.core.di.movieReaderName
 import com.martinez.erick.ratingmovies.core.di.movieUpdaterName
 import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
+import com.martinez.erick.ratingmovies.core.types.Rater
+import com.martinez.erick.ratingmovies.core.types.Reader
+import com.martinez.erick.ratingmovies.core.types.Updater
 import com.martinez.erick.ratingmovies.features.randomrating.domain.*
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -19,7 +22,8 @@ class RandomRatingViewModel
 @Inject constructor(
     @Named(movieReaderName) private val movieReader: Reader<Observable<MutableList<MovieEntity>>>,
     @Named(movieUpdaterName) private val movieUpdater: Updater<MovieEntity>,
-    @Named(movieRaterName) private val movieRater: Rater<MovieEntity, Float>): ViewModel() {
+    @Named(movieRaterName) private val movieRater: Rater<MovieEntity, Float>
+): ViewModel() {
 
     fun getAllMovies(): Observable<MutableList<MovieEntity>> = (movieReader as MovieReader).read("None")
 

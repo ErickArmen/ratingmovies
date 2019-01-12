@@ -3,6 +3,9 @@ package com.martinez.erick.ratingmovies.core.di
 import com.martinez.erick.ratingmovies.core.di.viewmodel.ViewModelModule
 import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
 import com.martinez.erick.ratingmovies.core.sqlite.RoomDB
+import com.martinez.erick.ratingmovies.core.types.Rater
+import com.martinez.erick.ratingmovies.core.types.Reader
+import com.martinez.erick.ratingmovies.core.types.Updater
 import com.martinez.erick.ratingmovies.features.randomrating.data.LocalMovies
 import com.martinez.erick.ratingmovies.features.randomrating.data.MovieRepository
 import com.martinez.erick.ratingmovies.features.randomrating.domain.*

@@ -1,6 +1,5 @@
 package com.martinez.erick.ratingmovies.core.sqlite
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase

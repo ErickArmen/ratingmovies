@@ -1,6 +1,5 @@
 package com.martinez.erick.ratingmovies.features.randomrating.presentation.recycler
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.martinez.erick.ratingmovies.R

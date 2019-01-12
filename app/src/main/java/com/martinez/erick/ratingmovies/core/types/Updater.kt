@@ -1,4 +1,4 @@
-package com.martinez.erick.ratingmovies.features.randomrating.domain
+package com.martinez.erick.ratingmovies.core.types
 
 import io.reactivex.Completable
 

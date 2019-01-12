@@ -1,7 +1,6 @@
 package com.martinez.erick.ratingmovies.features.randomrating.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,16 +21,8 @@ import com.martinez.erick.ratingmovies.features.randomrating.domain.RandomRate
 import com.martinez.erick.ratingmovies.features.randomrating.domain.RandomRatingPosition
 import com.martinez.erick.ratingmovies.features.randomrating.presentation.recycler.MovieAdapter
 import com.martinez.erick.ratingmovies.features.randomrating.presentation.viewmodels.RandomRatingViewModel
-import dagger.android.support.DaggerFragment
-import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
-import io.reactivex.Observer
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Cancellable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import java.util.*
@@ -83,7 +74,11 @@ class MovieListFragment: Fragment(), View.OnClickListener {
         mainAdapter = MovieAdapter(movieList)
         mainAdapter.listener = {movie, rating -> updateRating(movie, rating) }
         rv_movies.adapter = mainAdapter
-        btn_random.setOnClickListener(this)
+        btn_random.apply {
+            setOnClickListener(this@MovieListFragment)
+            val messageOnOff = if (randomFlag) getString(R.string.on) else getString(R.string.off)
+            text = getString(R.string.random_rating, messageOnOff)
+        }
     }
 
     private fun setRecyclerList(list: MutableList<MovieEntity>){
@@ -118,7 +113,7 @@ class MovieListFragment: Fragment(), View.OnClickListener {
 
         randomFlag = !randomFlag
         val messageOnOff = if (randomFlag) getString(R.string.on) else getString(R.string.off)
-        activity?.toast(getString(R.string.random_on_off,messageOnOff), Toast.LENGTH_SHORT)
+        btn_random.text = (getString(R.string.random_rating, messageOnOff))
 
             compositeDisposable.add(randomObservable.subscribe {
                 updateRating(movieList[it.pos], it.rating)

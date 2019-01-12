@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">RatingMovies</string>
-    <string name="random_rating">Random Rating</string>
+    <string name="random_rating">Random Rating %1$s</string>
     <string name="avengers">Avengers</string>
     <string name="thank_you_for_rate">Thank you for rate!</string>
-    <string name="random_on_off">Random %1$s</string>
     <string name="on">ON</string>
     <string name="off">OFF</string>
 </resources>

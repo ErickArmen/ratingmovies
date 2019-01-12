@@ -1,6 +1,7 @@
 package com.martinez.erick.ratingmovies.features.randomrating.domain
 
 import com.martinez.erick.ratingmovies.core.sqlite.MovieEntity
+import com.martinez.erick.ratingmovies.core.types.Updater
 import com.martinez.erick.ratingmovies.features.randomrating.data.LocalMovies
 import com.martinez.erick.ratingmovies.features.randomrating.data.MovieRepository
 import io.reactivex.Completable
