@@ -30,8 +30,10 @@ class MovieHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val avgRating: Float = if(movie.votes == zeroLong) zeroFloat else movie.totalRating/movie.votes
         rating.text = avgRating.toString()
         getImage(movie.image, image)
-        rateBar.setOnRatingBarChangeListener { _, rating, _ ->
-            listener(movie, rating)
+        rateBar.rating = avgRating
+        rateBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            if (fromUser)
+                listener(movie, rating)
         }
     }
 
