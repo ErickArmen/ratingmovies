@@ -21,17 +21,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class])
-interface AppComponent/*:AndroidInjector<RatingMoviesApp>*/ {
-
-
-    /*@Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: Application): Builder
-        fun build(): AppComponent
-    }
-
-    override fun inject(instance: RatingMoviesApp?)*/
+interface AppComponent {
 
     fun injectReader(reader: Reader<Observable<MutableList<MovieEntity>>>): Reader<Observable<MutableList<MovieEntity>>>
 

@@ -16,7 +16,7 @@ import javax.inject.Inject
 */
 
 
-class RatingMoviesApp: Application()/*: DaggerApplication()*/ {
+class RatingMoviesApp: Application() {
 
     private lateinit var appComponent: AppComponent
 
@@ -24,12 +24,6 @@ class RatingMoviesApp: Application()/*: DaggerApplication()*/ {
         super.onCreate()
         appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }
-
-
-    /*override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        appComponent = DaggerAppComponent.builder().application(this).build()
-        return appComponent
-    }*/
 
     fun getAppComponent() = appComponent
 

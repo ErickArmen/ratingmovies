@@ -14,13 +14,6 @@ import io.reactivex.Observable
  Created by Erick Martínez Armendáriz on 1/9/2019
 */
 
-/*
-@MovieScope
-@Subcomponent(modules = [AndroidSupportInjectionModule::class, ActivitiesModule::class, MovieModule::class, FragmentsModule::class])
-interface MovieComponent {
-    fun inject(randomRatingActivity: RandomRatingActivity)
-}*/
-
 @MovieScope
 @Subcomponent(modules = [MovieModule::class])
 interface MovieComponent {

@@ -28,22 +28,4 @@ class AppModule(private val application: Application) {
     @Provides
     fun injectRoom(): RoomDB = RoomProvider(application).createDB()
 
-   /*@Provides
-    @Named(movieReaderName)
-    fun injectMovieReader(localMovies: LocalMovies): Reader<Observable<MutableList<MovieEntity>>>{
-        return MovieReader(localMovies)
-    }
-
-    @Provides
-    @Named(movieUpdaterName)
-    fun injectMovieUpdater(localMovies: LocalMovies): Updater<MovieEntity>{
-        return MovieUpdater(localMovies)
-    }
-
-    @Provides
-    @Named(movieRaterName)
-    fun injectMovieRater(): Rater<MovieEntity, Float> {
-        return MovieRater()
-    }*/
-
 }
